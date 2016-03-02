@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace HelloHttp.Entities
 {
@@ -23,6 +24,11 @@ namespace HelloHttp.Entities
         public static Person GetPerson(string name)
         {
             return JsonConvert.DeserializeObject<Person>(Api.Get(new Uri(Config.Url + "api/person/" + name)));
+        }
+
+        public static IEnumerable<Person> GetPeople()
+        {
+            return JsonConvert.DeserializeObject<List<Person>>(Api.Get(new Uri(Config.Url + "api/person")));
         }
     }
 }
