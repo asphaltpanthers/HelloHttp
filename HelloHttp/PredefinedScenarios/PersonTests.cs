@@ -68,5 +68,19 @@ namespace HelloHttp.PredefinedScenarios
 
             Assert.AreEqual("Person creation success!", response);
         }
+
+        [TestMethod]
+        public void InvalidPerson()
+        {
+            try
+            {
+                var response = Person.GetPerson("sally");
+                Assert.Fail("Expected 404 error message.");
+            }
+            catch (System.Net.WebException e)
+            {
+                Assert.AreEqual("No person exists with specified name.", e.Message);
+            }
+        }
     }
 }
