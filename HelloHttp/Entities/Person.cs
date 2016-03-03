@@ -30,5 +30,10 @@ namespace HelloHttp.Entities
         {
             return JsonConvert.DeserializeObject<List<Person>>(Api.Get(new Uri(Config.Url + "api/person")));
         }
+
+        public static String PostPerson(Person person)
+        {
+            return Api.Post(new Uri(Config.Url + "api/person"), JsonConvert.SerializeObject(person));
+        }
     }
 }
